@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>C&D Waste</title>
+    {% load static %}
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.css'%}" rel="stylesheet">
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'jquery/jquery.min.js'%}"></script>
+    <script src="{% static 'js/bootstrap.bundle.js'%}"></script>
+
+    <!-- Libraries CSS Files -->
+    <link href="{% static 'lib/ionicons/css/ionicons.min.css'%}" rel="stylesheet">
+    <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css'%}" rel="stylesheet">
+    <link href="{% static 'lib/magnific-popup/magnific-popup.css'%}" rel="stylesheet">
+    <link href="{% static 'lib/hover/hover.min.css'%}" rel="stylesheet">
+
+    <!-- Main Stylesheet File -->
+    <link href="{% static 'css/style.css'%}" rel="stylesheet">
+
+    <!-- Responsive css -->
+    <link href="{% static 'css/responsive.css'%}" rel="stylesheet">
+
+
+    <!-- Custom fonts for this template -->
+    <!--<link href="https://fonts.googleapis.com/css?family=Lora:400,700|Raleway:400,700" rel="stylesheet">-->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,700i|Playfair+Display:400,400i,700,700i,900,900i"
+          rel="stylesheet">
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'jquery/jquery.min.js'%}"></script>
+    <script src="{% static 'js/bootstrap.bundle.js'%}"></script>
+
+    <!--animate css modal-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css">
+
+    <!--Swiper CSS-->
+    <link rel="stylesheet" href="{% static 'dist/css/swiper.min.css'%}">
+
+    <!--css file from animate js-->
+    <link href="{% static 'dist/css/animate.min.css'%}" rel="stylesheet">
+
+    <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+            integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+            crossorigin=""></script>
+
+    <link href="{% static 'css/mapvisual.css'%}" rel="stylesheet">
+
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700|Raleway:400,700" rel="stylesheet">
+
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+          integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+          crossorigin=""/>
+
+    <!--create style for canvas-->
+    <style>
+        canvas {
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
+    </style>
+
+    <!--create style for map graph-->
+    <!--<style>-->
+        <!--html, body {-->
+            <!--height: 100%;-->
+            <!--margin: 0;-->
+        <!--}-->
+
+        <!--#map {-->
+            <!--width: 600px;-->
+            <!--height: 400px;-->
+        <!--}-->
+    <!--</style>-->
+</head>
+<body>
+<!-- start section navbar -->
+<nav id="main-nav">
+    <div class="row">
+        <div class="container">
+            <div class="responsive"><i data-icon="m" class="ion-navicon-round"></i></div>
+            <ul class="nav-menu list-unstyled">
+                <li><a class="smoothScroll" href="{% url 'home'%}">Home<span class="sr-only">(current)</span></a></li>
+                <li><a class="smoothScroll" href="{% url 'statistics'%}">Statistics</a></li>
+                <li><a class="smoothScroll" href="{% url 'WasteCalculator'%}">Waste Calculator</a></li>
+                <li><a class="smoothScroll" href="{% url 'SearchLocation'%}">Recycle near you</a></li>
+                <li><a class="smoothScroll" href="{% url 'suggestions'%}">Suggestions</a></li>
+                <li><a class="smoothScroll" href="{% url 'about'%}">About Us</a></li>
+                {% if user.is_authenticated %}
+                <li><a class="smoothScroll" href="{% url 'logout' %}">logout</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- End section navbar -->
+
+<!-- start section map visual -->
+<div id= "about" class="paddsection" style="padding-top: 120px">
+    <div class="container">
+                <div class="about-descr" style="margin-bottom: 30px">
+                    <p class="p-heading">Melbourne C&D Waste - 2018</p>
+                    <p class="separator">The map illustrates how much Melbourne constructions waste in thousand tonnes in
+                        term of timbers, bricks, plaster boards, tiles and concretes</p>
+                </div>
+
+                <div class="div-img-bg">
+                    <div class="about-img">
+                        <div id='map' class="img-responsive" alt="me" style="width: auto"></div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+<!-- end section map visual -->
+
+
+<!-- start section line chart -->
+<div id="about1" class="paddsection" style="padding-top: 10px">
+    <div class="container">
+        <div class="about-descr" style="margin-bottom: 30px">
+            <!--description for line chart-->
+            <p class="p-heading">Waste of 5 Building Materials in Melbourne</p>
+            <p class="separator">These charts show the thousand tonnes of waste for different types of construction materials in
+                each suburb of Melbourne.</p>
+        </div>
+
+        <div class="row justify-content-between">
+            <div class="col-lg-9 col-sm-12">
+                <div class="div-img-bg">
+                    <div class="about-img">
+                        <canvas id="canvas" class="img-responsive"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!--add a drop down list to choose suburb-->
+            <div class="col-lg-3 col-sm-12">
+                <div class="about-descr">
+                    <div class="intro-button mx-auto" style="text-align: center; bottom:5px;">
+                        <select id="SuburbSelect" class="btn btn-primary btn-xl">
+                            <option value="Southbank">Southbank</option>
+                            <option value="Parkville">Parkville</option>
+                            <option value="West Melbourne (Industrial)">West Melbourne (Industrial)</option>
+                            <option value="Melbourne (CBD)">Melbourne (CBD)</option>
+                            <option value="East Melbourne">East Melbourne</option>
+                            <option value="West Melbourne (Residential)">West Melbourne (Residential)</option>
+                            <option value="North Melbourne">North Melbourne</option>
+                            <option value="Port Melbourne">Port Melbourne</option>
+                            <option value="Kensington">Kensington</option>
+                            <option value="Carlton">Carlton</option>
+                            <option value="Docklands">Docklands</option>
+                            <option value="Melbourne (Remainder)">Melbourne (Remainder)</option>
+                        </select>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div style="text-align: center">
+            <div class="col-sm-12" style="text-align: center">
+                <a class="transferButton" href="{% url 'WasteCalculator'%}"><span>Check our waste calculator!</span></a>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- end section line chart -->
+<!--button link to the calculator-->
+
+
+<!-- start section footer -->
+<div id="footer" class="text-center">
+    <div class="container">
+        <p>&copy; Copyrights Folio. All rights reserved.</p>
+
+        <div class="credits">
+            <!--
+              All the links in the footer should remain intact.
+              You can delete the links only if you purchased the pro version.
+              Licensing information: https://bootstrapmade.com/license/
+              Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Folio
+            -->
+            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        </div>
+
+    </div>
+</div>
+<!-- End section footer -->
+
+
+<!--d3 JavaScript-->
+<!-- JavaScript Libraries -->
+<script src="{% static 'lib/jquery/jquery.min.js'%}"></script>
+<script src="{% static 'lib/jquery/jquery-migrate.min.js'%}"></script>
+<script src="{% static 'lib/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+<script src="{% static 'lib/typed/typed.js'%}"></script>
+<script src="{% static 'lib/owlcarousel/owl.carousel.min.js'%}"></script>
+<script src="{% static 'lib/magnific-popup/magnific-popup.min.js'%}"></script>
+<script src="{% static 'lib/isotope/isotope.pkgd.min.js'%}"></script>
+
+<!-- Template Main Javascript File -->
+<script src="{% static 'js/main.js'%}"></script>
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<script src="{% static 'js/map.js' %}"></script>
+<script src="{% static 'js/lineChart.js' %}"></script>
+
+</body>
+</html>

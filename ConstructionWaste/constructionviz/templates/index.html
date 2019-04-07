@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>C&D Waste</title>
+    {% load static %}
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.css'%}" rel="stylesheet">
+    <link href="{% static 'lib/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
+
+    <!-- Libraries CSS Files -->
+    <link href="{% static 'lib/ionicons/css/ionicons.min.css'%}" rel="stylesheet">
+    <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css'%}" rel="stylesheet">
+    <link href="{% static 'lib/magnific-popup/magnific-popup.css'%}" rel="stylesheet">
+    <link href="{% static 'lib/hover/hover.min.css'%}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+          integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+    <!-- Main Stylesheet File -->
+    <link href="{% static 'css/style.css'%}" rel="stylesheet">
+
+    <!-- Responsive css -->
+    <link href="{% static 'css/responsive.css'%}" rel="stylesheet">
+
+
+    <!-- Custom fonts for this template -->
+    <!--<link href="https://fonts.googleapis.com/css?family=Lora:400,700|Raleway:400,700" rel="stylesheet">-->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,700i|Playfair+Display:400,400i,700,700i,900,900i"
+          rel="stylesheet">
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'jquery/jquery.min.js'%}"></script>
+    <script src="{% static 'js/bootstrap.bundle.js'%}"></script>
+
+    <!--animate css modal-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css">
+
+    <!--Swiper CSS-->
+    <link rel="stylesheet" href="{% static 'dist/css/swiper.min.css'%}">
+
+    <!--css file from animate js-->
+    <link href="{% static 'dist/css/animate.min.css'%}" rel="stylesheet">
+
+
+</head>
+<body>
+
+<!--start section navbar -->
+<nav id="main-nav">
+    <div class="row">
+        <div class="container">
+            <div class="responsive"><i data-icon="m" class="ion-navicon-round"></i></div>
+            <ul class="nav-menu list-unstyled">
+                <li><a class="smoothScroll" href="{% url 'home'%}">Home<span class="sr-only">(current)</span></a></li>
+                <li><a class="smoothScroll" href="{% url 'statistics'%}">Statistics</a></li>
+                <li><a class="smoothScroll" href="{% url 'WasteCalculator'%}">Waste Calculator</a></li>
+                <li><a class="smoothScroll" href="{% url 'SearchLocation'%}">Recycle near you</a></li>
+                <li><a class="smoothScroll" href="{% url 'suggestions'%}">Suggestions</a></li>
+                <li><a class="smoothScroll" href="{% url 'about'%}">About Us</a></li>
+                {% if user.is_authenticated %}
+                <li><a class="smoothScroll" href="{% url 'logout' %}">logout</a></li>
+                {% endif %}
+            </ul>
+        </div>
+
+    </div>
+</nav>
+<!--end with navigation section-->
+
+<!-- start section header -->
+<div id="header" class="home">
+    <div class="container">
+        <div class="header-content">
+            <h1>Construction Waste</h1>
+            <p></p>
+            <h2 style="color: #FFFFFF">We can <span class="typed"></span></h2>
+            <p></p>
+            <p>Recycle? Reuse? Or drop?</p>
+        </div>
+    </div>
+</div>
+<!-- End section header -->
+
+
+<!-- start section services -->
+<div id="services" class="paddsection">
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-lg-3" style="margin-top: 30px">
+                <div class="services-block">
+                    <a class="smoothScroll" href="{% url 'statistics'%}"><i class="fas fa-chart-area"></i></a>
+                    <a class="smoothScroll" href="{% url 'statistics'%}"><span>Statistics</span></a>
+                    <p class="separator">Analyze Melbourne's history with Construction and Demolition waste</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3" style="margin-top: 30px">
+                <div class="services-block">
+                    <a href="{% url 'WasteCalculator'%}"><i class="fas fa-calculator"></i></a>
+                    <a href="{% url 'WasteCalculator'%}"><span>Waste Calculator</span></a>
+                    <p class="separator">Calculate the different types of construction waste you produce when making a building</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3" style="margin-top: 30px">
+                <div class="services-block">
+                    <!--<i class="ion-ios-lightbulb-outline"></i>-->
+                    <a href="{% url 'SearchLocation'%}"><i class="fas fa-map-marker-alt"></i></a>
+                    <a href="{% url 'SearchLocation'%}"><span>Recycle near you</span></a>
+                    <p class="separator">Search for the easiest way to deal with your Construction waste</p>
+                </div>
+            </div>
+
+            <!--<div class="col-lg-3 ">-->
+                <!--<div class="services-block">-->
+                    <!--<a class="smoothScroll" href="{% url 'about'%}"><i class="fas fa-camera-retro"></i></a>-->
+                    <!--<a class="smoothScroll" href="{% url 'about'%}"><span>About Us</span></a>-->
+                    <!--<p class="separator">Come & Connect with the team</p>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <div class="col-lg-3" style="margin-top: 30px">
+                <div class="services-block">
+                    <a class="smoothScroll" href="{% url 'suggestions'%}"><i class="fas fa-envelope-open-text"></i></a>
+                    <a class="smoothScroll" href="{% url 'suggestions'%}"><span>Suggestions</span></a>
+                    <p class="separator">Provide suggestions for home builders and volume builders</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- start section slides and description-->
+<div id= "about" class="paddsection">
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-lg-7 ">
+                <div class="div-img-bg">
+                        <div class="img-responsive">
+                            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+                                </ol>
+                                <div class="carousel-inner" role="listbox">
+                                    <div class="carousel-item active">
+                                        <img class="d-block img-fluid w-100"
+                                             src="{% static 'img/homeImage2.jpg'%}?v=2.0" alt="">
+                                        <div class="carousel-caption d-none d-md-block">
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img class="d-block img-fluid w-100"
+                                             src="{% static 'img/homeImage4.jpg'%}?v=1.0" alt="">
+                                        <div class="carousel-caption d-none d-md-block">
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img class="d-block img-fluid w-100"
+                                             src="{% static 'img/homeImage5.jpg'%}?v=1.0" alt="">
+                                        <div class="carousel-caption d-none d-md-block">
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img class="d-block img-fluid w-100"
+                                             src="{% static 'img/homeImage8.jpg'%}?v=1.0" alt="">
+                                        <div class="carousel-caption d-none d-md-block">
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img class="d-block img-fluid w-100"
+                                             src="{% static 'img/homeImage7.jpg'%}?v=1.0" alt="">
+                                        <div class="carousel-caption d-none d-md-block">
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                                   data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                                   data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="about-descr">
+                    <p class="p-heading">LET'S REDUCE & RECYCLE!</p>
+                    <p class="separator">Over 71% of the contribution to landfill waste in Australia is from
+                        Construction and
+                        Demolition waste.</p>
+                    <p class="separator">With a waste disposal of over 8.5 million tons in Australia nationally, about
+                        55%
+                        is the current recovery recycle rate of the C&D waste.</p>
+                    <p class="separator">But there is much more each and everyone of
+                        us can do…</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end section about us -->
+
+<!-- start section footer -->
+<div id="footer" class="text-center">
+    <div class="container">
+        <p>&copy; Copyrights Folio. All rights reserved.</p>
+
+        <div class="credits">
+            <!--
+              All the links in the footer should remain intact.
+              You can delete the links only if you purchased the pro version.
+              Licensing information: https://bootstrapmade.com/license/
+              Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Folio
+            -->
+            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        </div>
+
+    </div>
+</div>
+<!-- End section footer -->
+
+<!-- JavaScript Libraries -->
+<!--<script src="{% static 'lib/jquery/jquery.min.js'%}"></script>-->
+<script src="{% static 'lib/jquery/jquery-migrate.min.js'%}"></script>
+<script src="{% static 'lib/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+<script src="{% static 'lib/typed/typed.js'%}"></script>
+<script src="{% static 'lib/owlcarousel/owl.carousel.min.js'%}"></script>
+<script src="{% static 'lib/magnific-popup/magnific-popup.min.js'%}"></script>
+<script src="{% static 'lib/isotope/isotope.pkgd.min.js'%}"></script>
+
+<!-- Template Main Javascript File -->
+<script src="{% static 'js/main.js'%}"></script>
+
+</body>
+</html>

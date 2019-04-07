@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>C&D Waste</title>
+    {% load static %}
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.css'%}" rel="stylesheet">
+    <link href="{% static 'lib/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700|Raleway:400,700" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/about.css'%}" rel="stylesheet">
+
+    <!-- Libraries CSS Files -->
+    <link href="{% static 'lib/ionicons/css/ionicons.min.css'%}" rel="stylesheet">
+    <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css'%}" rel="stylesheet">
+    <link href="{% static 'lib/magnific-popup/magnific-popup.css'%}" rel="stylesheet">
+    <link href="{% static 'lib/hover/hover.min.css'%}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+          integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+    <!-- Main Stylesheet File -->
+    <link href="{% static 'css/style.css'%}" rel="stylesheet">
+    <link href="{% static 'css/suggestion.css'%}" rel="stylesheet">
+
+    <!-- Responsive css -->
+    <link href="{% static 'css/responsive.css'%}" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,700i|Playfair+Display:400,400i,700,700i,900,900i"
+          rel="stylesheet">
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'jquery/jquery.min.js'%}"></script>
+    <script src="{% static 'js/bootstrap.bundle.js'%}"></script>
+
+</head>
+<body>
+
+<!--start section navbar -->
+<nav id="main-nav">
+    <div class="row">
+        <div class="container">
+            <div class="responsive"><i data-icon="m" class="ion-navicon-round"></i></div>
+            <ul class="nav-menu list-unstyled">
+                <li><a class="smoothScroll" href="{% url 'home'%}">Home<span class="sr-only">(current)</span></a></li>
+                <li><a class="smoothScroll" href="{% url 'statistics'%}">Statistics</a></li>
+                <li><a class="smoothScroll" href="{% url 'WasteCalculator'%}">Waste Calculator</a></li>
+                <li><a class="smoothScroll" href="{% url 'SearchLocation'%}">Recycle near you</a></li>
+                <li><a class="smoothScroll" href="{% url 'suggestions'%}">Suggestions</a></li>
+                <li><a class="smoothScroll" href="{% url 'about'%}">About Us</a></li>
+                {% if user.is_authenticated %}
+                <li><a class="smoothScroll" href="{% url 'logout' %}">logout</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--end with navigation section-->
+
+<!--suggestion section-->
+<section class="comonSection portfolios2" id="portfolio" style="padding-top: 60px">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="folioNav folioNav2">
+                    <ul id="filter">
+                        <li class="active" data-group="all">All</li>
+                        <li data-group="Volume">Volume Builder</li>
+                        <li data-group="Home">Owner Builder</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="folioGrid2" id="folioGrid2">
+        <div class="folioItem2" data-groups='["all", "Home"]'>
+            <img src="{% static 'img/youtube.jpg'%}" alt=""/>
+            <div class="fI2Hover">
+                <div class="fI2content">
+                    <h2><a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">Tips and Tricks Videos</a>
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <div class="folioItem2" data-groups='["all", "Home"]'>
+            <img src="{% static 'img/article2.jpg'%}" alt=""/>
+            <div class="fI2Hover">
+                <div class="fI2content">
+                    <h2><a class="portfolio-link" data-toggle="modal" href="#portfolioModal2">Articles For Owner Builders</a>
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <div class="folioItem2" data-groups='["all", "Volume"]'>
+            <img src="{% static 'img/video.png'%}" alt=""/>
+            <div class="fI2Hover">
+                <div class="fI2content">
+                    <h2><a class="portfolio-link" data-toggle="modal" href="#portfolioModal4">Videos for Volume Builders</a></h2>
+                </div>
+            </div>
+        </div>
+        <div class="folioItem2" data-groups='["all", "Volume"]'>
+            <img src="{% static 'img/article1.jpg'%}" alt=""/>
+            <div class="fI2Hover">
+                <div class="fI2content">
+                    <h2><a class="portfolio-link" data-toggle="modal" href="#portfolioModal3">Articles for Volume Builders</a>
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="folioItem2" data-groups='["all", "Volume", "Home"]' style="width: 100%">
+            <img src="{% static 'img/social.jpg'%}" alt=""/>
+            <div class="fI2Hover">
+                <div class="fI2content">
+                    <h2><a class="portfolio-link" data-toggle="modal" href="#portfolioModal5">Recyle Organizations</a></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- Modal 1 videos for owner-->
+<div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl"></div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <div class="modal-body">
+                            <!-- Project Details Go Here -->
+                            <h2 class="text-uppercase">Tips and Tricks</h2>
+                            <p class="item-intro text-muted">See these videos to know how to deposit construction
+                                waste </p>
+                            <hr>
+                            <p><h4 class="post-subtitle">Loft Bed construction DIY - Build It Yourself 4K</h4></p>
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/gjcJ91kx3E8"
+                                    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            </div>
+                            <hr>
+
+                            <p><h4 class="post-subtitle">Building a Tiny House #2 - Framing</h4></p>
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/7cPLuUVBXdM"
+                                    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            </div>
+                            <hr>
+
+                            <p><h4 class="post-subtitle">See what can be made out of construction waste.</h4></p>
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/gPpQNFgF5rk"
+                                    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            </div>
+                            <hr>
+
+                            <p><h4 class="post-subtitle">10 life hacks with hot glue for your home.
+                            Handmade things and other useful crafts</h4></p>
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/BhEDLgcYMGc"
+                                    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            </div>
+                            <hr>
+
+                            <p><h4 class="post-subtitle">Decorating your home for Christmas and New Year's</h4></p>
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/8WmNafXuN8U"
+                                    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            </div>
+                            <hr>
+
+                            <p><h4 class="post-subtitle">Renovation life hacks you've never heard of. How to do
+                            renovations quickly.</h4></p>
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/T5XqcjTesyQ"
+                                    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            </div>
+                            <hr>
+                            <p></p>
+                            <button class="btn btn-primary" data-dismiss="modal" type="button">
+                                <i class="fa fa-times"></i>
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 2 articles-->
+<div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl"></div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <div class="modal-body">
+                            <!-- Project Details Go Here -->
+                            <h2 class="text-uppercase">Suggestion Articles</h2>
+                            <p class="item-intro text-muted">Read articles to know how to deal with construction
+                                waste</p>
+                            <p></p>
+
+                            <div class="post-preview">
+                                <a href="https://www.allmetrobins.com.au/how-to-reduce-waste-on-your-construction-site/" target="_blank">
+                                    <h3 class="post-title">
+                                        How to reduce waste on your construction site
+                                    </h3>
+                                    <h4 class="post-subtitle">
+                                        Sustainability has become an increasingly important topic...
+                                    </h4>
+                                </a>
+                                <p class="post-meta">Posted by
+                                    <a href="https://www.allmetrobins.com.au/author/admin/" target="_blank">admin</a>
+                                    on September 5, 2017</p>
+                            </div>
+                            <hr>
+
+                            <div class="post-preview">
+                                <a href="https://www.epa.gov/smm/best-practices-reducing-reusing-and-recycling-construction-and-demolition-materials" target="_blank">
+                                    <h3 class="post-title">
+                                        Best Practices for Reducing, Reusing, and Recycling Construction and Demolition
+                                        Materials
+                                    </h3>
+                                    <h4 class="post-subtitle">
+                                        Builders, construction teams and design practitioners can divert...
+                                    </h4>
+                                </a>
+                                <p class="post-meta">Posted by
+                                    <a href="https://www.epa.gov/" target="_blank">United States Environmental Protection Agency</a>
+                                </p>
+                            </div>
+                            <hr>
+
+                            <div class="post-preview">
+                                <a href="https://www.reconomy.com/blog/how-can-good-design-minimise-waste-construction-industry" target="_blank">
+                                    <h3 class="post-title">
+                                        How Can Good Design Minimise Waste in the Construction Industry?
+                                    </h3>
+                                    <h4 class="post-subtitle">
+                                        Minimising waste is increasingly a client-driven imperative...
+                                    </h4>
+                                </a>
+                                <p class="post-meta">Posted by
+                                    <a href="#" target="_blank">PAUL COX</a>
+                                    on August 3, 2016</p>
+                            </div>
+                            <hr>
+
+                            <div class="post-preview">
+                                <a href="https://www.norbord.com/na/blog/reduce-waste-on-your-construction-site/" target="_blank">
+                                    <h3 class="post-title">
+                                        Reduce waste on your construction site
+                                    </h3>
+                                    <h4 class="post-subtitle">
+                                        The construction industry is responsible for an enormous amount of waste...
+                                    </h4>
+                                </a>
+                                <p class="post-meta">Posted by
+                                    <a href="https://www.norbord.com/na" target="_blank">Norbord</a>
+                                    on May 2, 2018</p>
+                            </div>
+                            <hr>
+
+                            <div class="post-preview">
+                                <a href="http://www.ercofusa.com/reducing-construction-waste-through-recycling-and-reuse/" target="_blank">
+                                    <h3 class="post-title">
+                                        Reducing Construction Waste through Recycling and Reuse
+                                    </h3>
+                                    <h4 class="post-subtitle">
+                                        The new construction industry generates an average of 3.9 pounds of...
+                                    </h4>
+                                </a>
+                                <p class="post-meta">Posted by
+                                    <a href="http://www.ercofusa.com/" target="_blank">erc</a>
+                                    on September 10, 2015</p>
+                            </div>
+                            <hr>
+
+                            <div class="post-preview">
+                                <a href="http://www.wbdg.org/resources/construction-waste-management" target="_blank">
+                                    <h3 class="post-title">
+                                        Construction waste management
+                                    </h3>
+                                    <h4 class="post-subtitle">
+                                        Responsible management of waste is an essential aspect of sustainable...
+                                    </h4>
+                                </a>
+                                <p class="post-meta">Posted by
+                                    <a href="https://www.erdc.usace.army.mil/Locations/CERL.aspx/" target="_blank">Tom Napier</a>
+                                    on October 17, 2016</p>
+                            </div>
+                            <hr>
+
+                            <button class="btn btn-primary" data-dismiss="modal" type="button">
+                                <i class="fa fa-times"></i>
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 3 articles for volume-->
+<div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl"></div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <div class="modal-body">
+                            <!-- Project Details Go Here -->
+                            <h2 class="text-uppercase">Suggestion Articles for Volume Builders</h2>
+                            <p class="item-intro text-muted">Read articles to know how to deal with construction
+                                waste</p>
+                            <p></p>
+
+                            <div class="post-preview">
+                                <a href="https://www.forconstructionpros.com/business/article/
+                                12068798/five-techniques-for-sustainable-building-construction" target="_blank">
+                                    <h3 class="post-title">
+                                        5 Techniques for Sustainable Building Construction
+                                    </h3>
+                                    <h4 class="post-subtitle">
+                                        For contractors, a strategy for saving time and materials can lead to...
+                                    </h4>
+                                </a>
+                                <p class="post-meta">Posted by
+                                    <a href="https://www.forconstructionpros.com/" target="_blank">For Construction PROS.com</a>
+                                    on June 11, 2015</p>
+                            </div>
+                            <hr>
+
+                            <div class="post-preview">
+                                <a href="https://greenliving.lovetoknow.com/Sustainable_Construction_Techniques" target="_blank">
+                                    <h3 class="post-title">
+                                        Sustainable Construction Techniques
+                                    </h3>
+                                    <h4 class="post-subtitle">
+                                        To gain a better understanding of sustainable construction techniques...
+                                    </h4>
+                                </a>
+                                <p class="post-meta">Posted by
+                                    <a href="https://www.lovetoknow.com/member/34~donna-sundblad" target="_blank">Donna Sundblad</a>
+                                    on June 11, 2015</p>
+                            </div>
+                            <hr>
+
+                            <div class="post-preview">
+                                <a href="https://blueandgreentomorrow.com/features/a-guide-to-sustainable-construction-methods/" target="_blank">
+                                    <h3 class="post-title">
+                                        Guide to Sustainable Construction Methods
+                                    </h3>
+                                    <h4 class="post-subtitle">
+                                        As the global population becomes more aware of our collective footprint...
+                                    </h4>
+                                </a>
+                                <p class="post-meta">Posted by
+                                    <a href="https://blueandgreentomorrow.com/author/admin/" target="_blank">Blue & Green Tomorrow</a>
+                                    on December 1, 2015</p>
+                            </div>
+                            <hr>
+
+                            <button class="btn btn-primary" data-dismiss="modal" type="button">
+                                <i class="fa fa-times"></i>
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 4 videos-->
+<div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl"></div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <div class="modal-body">
+                            <!-- Project Details Go Here -->
+                            <h2 class="text-uppercase">Suggestion Videos</h2>
+                            <p class="item-intro text-muted">See these videos to know how to deposit construction
+                                waste </p>
+                            <hr>
+                            <p><h4 class="post-subtitle">Design Strategies: Reducing Construction Waste</h4></p>
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/ctBDRargorw"
+                                    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            </div>
+                            <hr>
+
+                            <p><h4 class="post-subtitle">Reuse: Opportunities for better use of waste construction
+                            materials </h4></p>
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/r0Ejq_4GXEA"
+                                    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            </div>
+                            <hr>
+
+                            <p><h4 class="post-subtitle">Avoiding and Reducing Construction Waste Part 2</h4></p>
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/_Ykat9toU7U"
+                                    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            </div>
+                            <hr>
+
+                            <p><h4 class="post-subtitle">C&D Waste (Construction & Demolition) Recycling
+                            Process</h4></p>
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/qYWjWdlCF14"
+                                    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            </div>
+                            <hr>
+
+                            <p><h4 class="post-subtitle">How San Francisco Is Becoming A Zero Waste City</h4></p>
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Cg3OA1s8-SI"
+                                    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            </div>
+                            <hr>
+
+                            <p><h4 class="post-subtitle">Tips To Reduce The Cost Of Building A House - Ways To
+                            Reduce The Cost Of Building A New House</h4></p>
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/e-ZljsOxc9E"
+                                    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            </div>
+                            <hr>
+                            <p></p>
+                            <button class="btn btn-primary" data-dismiss="modal" type="button">
+                                <i class="fa fa-times"></i>
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 5 articles for volume-->
+<div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl"></div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <div class="modal-body">
+                            <!-- Project Details Go Here -->
+                            <h2 class="text-uppercase">Organizations</h2>
+                            <p class="item-intro text-muted">Find organizations for construction waste!</p>
+                            <p></p>
+
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="team-member">
+                                            <a href="https://www.sustainability.vic.gov.au/" target="_blank">
+                                                <img class="mx-auto rounded-circle" src="{% static 'img/org1.png'%}"
+                                                     alt=""/>
+                                            <h4>Sustainability Victoria</h4></a>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="team-member">
+                                        <a href="https://www.epa.vic.gov.au/your-environment/waste/construction-and-demolition-waste" target="_blank">
+                                            <img src="{% static 'img/org2.png'%}" alt=""/></a>
+                                        <a href="https://www.epa.vic.gov.au/your-environment/waste/construction-and-demolition-waste" target="_blank">
+                                            <h4>Environment Protection Authority Victoria</h4></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-primary" data-dismiss="modal" type="button">
+                                <i class="fa fa-times"></i>
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- JavaScript Libraries -->
+<script src="{% static 'lib/jquery/jquery.min.js'%}"></script>
+<script src="{% static 'lib/jquery/jquery-migrate.min.js'%}"></script>
+<script src="{% static 'lib/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+<script src="{% static 'lib/typed/typed.js'%}"></script>
+<script src="{% static 'lib/owlcarousel/owl.carousel.min.js'%}"></script>
+<script src="{% static 'lib/magnific-popup/magnific-popup.min.js'%}"></script>
+<script src="{% static 'lib/isotope/isotope.pkgd.min.js'%}"></script>
+<script src="{% static 'js/wow.min.js'%}"></script>
+<script src="{% static 'js/jquery.appear.js'%}"></script>
+<script src="{% static 'js/jquery.shuffle.min.js'%}"></script>
+
+<!-- Template Main Javascript File -->
+<script src="{% static 'js/main.js'%}"></script>
+<script src="{% static 'js/theme.js'%}"></script>
+
+
+<script>
+    //scripts for close the youtube video when hit the close model
+    $('.close-modal').click(function(){
+        $("iframe").each(function() {
+            var src= $(this).attr('src');
+            $(this).attr('src',src);
+        });
+    });
+
+    $('.btn-primary').click(function(){
+        $("iframe").each(function() {
+            var src= $(this).attr('src');
+            $(this).attr('src',src);
+        });
+    });
+</script>
+
+</body>
+</html>
